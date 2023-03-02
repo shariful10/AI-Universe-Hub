@@ -17,9 +17,9 @@ const showUniverseHub = (data) => {
                 </div>
                 <div class="card-body">
                     <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
-                    <p class="font-work text-darker">1. ${card.features[0]}</p>
-                    <p class="font-work text-darker">2. ${card.features[1]}</p>
-                    <p class="font-work text-darker">3. ${card.features[2]}</p>
+                    <p class="font-work text-darker">1. ${card.features[0] ? card.features[0] : 'Not Found'}</p>
+                    <p class="font-work text-darker">2. ${card.features[1] ? card.features[1] : 'Not Found'}</p>
+                    <p class="font-work text-darker">3. ${card.features[2] ? card.features[2] : 'Not Found'}</p>
                 </div>
                 <div class="px-[25px]">
                     <hr>
@@ -33,7 +33,7 @@ const showUniverseHub = (data) => {
                         </div>
                     </div>
                     <div>
-                        <img class="" src="../images/arrow-btn.png" />
+                        <label for="my-modal" class="btn bg-white hover:bg-white border-none"><img onclick="cardsModal()" src="../images/arrow-btn.png" /></label>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,13 @@ const showUniverseHub = (data) => {
         `;
     });
     
+}
+
+const cardsModal = () => {
+    const url = "https://openapi.programming-hero.com/api/ai/tool/01";
+    fetch(url)
+    .then(res => res.json())
+    .then(data => console.log(data.data))
 }
 
 fetchUniverseHub();

@@ -24,7 +24,7 @@
                         darker: '#585858'
                     },
                     fontFamily: {
-                        work: ["Work Sans","sans-serif"],
+                        work: ["Work Sans", "sans-serif"],
                     }
                 }
             }
@@ -37,13 +37,35 @@
     <header class="container mx-auto mt-[50px]">
         <h1 class="text-[45px] text-black font-work font-semibold text-center">AI Universe Hub</h1>
         <div class="text-center">
-            <button class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mt-8 rounded-[16px]">Sort By Date</button>
+            <button
+                class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mt-8 rounded-[16px]">Sort
+                By Date</button>
         </div>
     </header>
     <!-- ─── Main Section ────────────────────────────────────────────── -->
     <main>
+        <!-- ─── Cards Section ───────────────────────────────────── -->
         <section id="card-container" class="container mx-auto my-12 grid md:grid-cols-3 gap-5">
-            
+
+        </section>
+        <section>
+            <div class="text-center">
+                <button
+                    class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mb-14 rounded-[16px]">See
+                    more</button>
+            </div>
+        </section>
+        <section>
+            <!-- ─── Modal Section ───────────────────────────────────── -->
+            <input type="checkbox" id="my-modal" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
+                        for free!</p>
+                </div>
+            </div>
         </section>
     </main>
 
