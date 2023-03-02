@@ -17,6 +17,8 @@
                 extend: {
                     colors: {
                         black: '#111111',
+                        red: '#EB5757',
+                        dark: 'rgba(17, 17, 17, 0.1)'
                     },
                     fontFamily: {
                         work: ["Work Sans","sans-serif"],
@@ -31,10 +33,24 @@
     <!-- ─── Header Section ──────────────────────────────────────────── -->
     <header class="container mx-auto mt-[50px]">
         <h1 class="text-[45px] text-black font-work font-semibold text-center">AI Universe Hub</h1>
+        <div class="text-center">
+            <button class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mt-8 rounded-[16px]">Sort By Date</button>
+        </div>
     </header>
     <!-- ─── Main Section ────────────────────────────────────────────── -->
     <main>
-        <section class="my-12"></section>
+        <section id="card-container" class="container mx-auto my-12 grid md:grid-cols-3 gap-5">
+            <!-- <div class="flex space-x-2"> -->
+                <!-- <figure class="px-10 pt-10">
+                    <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center">
+                    <h2 class="card-title">Shoes!</h2>
+                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                </div> -->
+                
+              <!-- </div> -->
+        </section>
     </main>
 
     <!-- ─── JavaScript File ─────────────────────────────────────────── -->
