@@ -24,13 +24,16 @@ const showUniverseHub = (data) => {
                 <div class="px-[25px]">
                     <hr>
                 </div>
-                <div class="p-[25px]">
+                <div class="p-[25px] flex justify-between items-center">
                     <div>
                         <h3 class="card-title font-work font-semibold text-[25px] mb-4">${card.name}</h3>
                         <div class="flex  space-x-[8px]">
                             <img class="" src="../images/published_in.png" />
                             <p> ${card.published_in}</p>
                         </div>
+                    </div>
+                    <div>
+                        <img class="" src="../images/arrow-btn.png" />
                     </div>
                 </div>
             </div>
