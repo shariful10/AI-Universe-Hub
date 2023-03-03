@@ -56,27 +56,25 @@ const showModalDetails = data => {
     modalBody.innerHTML = `
     <div class="p-2 md:p-[70px] grid md:grid-cols-2 gap-[20px]">
         <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red hover:bg-red border-none">✕</label>
-        <div class="p-[20px]">
-            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark bg-lightred>           
-                <div class="">
-                    <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[25px] pt-[10px] md:pt-[25px]">${data.description}</h4>
-                    <div class="grid grid-cols-3  px-[10px] md:px-[25px]">
-                        <div class="px-[26] py-[22px] text-center">
-                            <p>${data.pricing[0].plan}</p>
-                            <p>${data.pricing[0].price}</p>
-                        </div>
-                        <div class="px-[26] py-[22px]"></div>
-                        <div class="px-[26] py-[22px]"></div>
+        <div class="card w-full bg-base-400 shadow-xl border-[1px] border-red bg-lightred">           
+            <div class="">
+                <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[25px] pt-[10px] md:pt-[25px]">${data.description}</h4>
+                <div class="grid grid-cols-3  px-[10px] md:px-[25px]">
+                    <div class="px-[26] py-[22px] text-center">
+                        <p>${data.pricing[0].plan}</p>
+                        <p>${data.pricing[0].price}</p>
                     </div>
+                    <div class="px-[26] py-[22px]"></div>
+                    <div class="px-[26] py-[22px]"></div>
                 </div>
             </div>
-            <div>
-                <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
-                    <div class="">
-                        <img class="w-full rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
-                        <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
-                        <h3 class="mb-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
-                    </div>
+        </div>
+        <div>
+            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
+                <div class="">
+                    <img class="w-full rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                    <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
+                    <h3 class="mb-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
                 </div>
             </div>
         </div>
