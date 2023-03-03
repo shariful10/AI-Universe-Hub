@@ -6,9 +6,9 @@ const fetchUniverseHub = () => {
 }
 
 const showUniverseHub = (data) => {
-    console.log(data);
+    // console.log(data);
     const containerDetails = document.getElementById("card-container");
-    data.tools.forEach(card => {
+    data.tools.slice(0, 6).forEach(card => {
         containerDetails.innerHTML += `
         <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
             <div class="avatar">
@@ -33,7 +33,7 @@ const showUniverseHub = (data) => {
                         </div>
                     </div>
                     <div>
-                        <label for="my-modal" class="btn bg-white hover:bg-white border-none"><img onclick="cardsModal()" src="../images/arrow-btn.png" /></label>
+                        <label for="my-modal" class="btn bg-white hover:bg-white border-none"><img src="../images/arrow-btn.png"  onclick="fetchModalDetails('01')"></label>
                     </div>
                 </div>
             </div>
@@ -43,11 +43,41 @@ const showUniverseHub = (data) => {
     
 }
 
-const cardsModal = () => {
-    const url = "https://openapi.programming-hero.com/api/ai/tool/01";
+const fetchModalDetails = id => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => console.log(data.data))
+    .then(data => showModalDetails(data.data))
+}
+
+const showModalDetails = data => {
+    console.log(data);
+    const modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = `
+    <div class="p-[126px] grid md:grid-cols-2 gap-[20px]">
+        <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red hover:bg-red border-none">✕</label>
+        <div>
+            <div>
+                <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
+                    <div class="avatar">
+                        <div class="">
+                            <img class="p-[25px] w-full rounded" src="${data.logo}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
+                    <div class="avatar">
+                        <div class="">
+                            <img class="p-[25px] w-full rounded" src="${data.logo}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
 }
 
 fetchUniverseHub();
