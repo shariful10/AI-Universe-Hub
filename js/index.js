@@ -39,6 +39,7 @@ const showUniverseHub = (data) => {
             </div>
         </div>
         `;
+        
     });
     
 }
@@ -108,5 +109,10 @@ const showModalDetails = data => {
     </div>
     `;
 }
+
+// const seeMoreBtn = document.getElementById("seeMore");
+// seeMoreBtn.addEventListener("click", () => {
+//     showUniverseHub();
+// });
 
 fetchUniverseHub();

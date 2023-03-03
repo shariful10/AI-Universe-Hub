@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css"> -->
+    <link rel="stylesheet" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/ce32527ea4.js" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@
     <header class="container mx-auto mt-[50px]">
         <h1 class="text-[45px] text-black font-work font-semibold text-center">AI Universe Hub</h1>
         <div class="text-center">
-            <button
+            <button id="sort-by-date-button"
                 class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mt-8 rounded-[16px]">Sort
                 By Date</button>
         </div>
@@ -51,19 +51,27 @@
         <section id="card-container" class="container mx-auto my-12 grid md:grid-cols-3 gap-5">
 
         </section>
+        <!-- ─── See More Button ───────────────────────────────────── -->
         <section>
             <div class="text-center">
-                <button onclick=""
+                <button id="seeMore"
                     class="py-[24px] px-7 text-white font-semibold bg-red border-none capitalize font-work text-[20px] hover:bg-red mb-14 rounded-[16px]">See
-                    more</button>
+                    more
+                </button>
             </div>
         </section>
+        <!-- ─── Modal Section ───────────────────────────────────── -->
         <section>
-            <!-- ─── Modal Section ───────────────────────────────────── -->
             <input type="checkbox" id="my-modal" class="modal-toggle" />
             <div class="modal">
                 <div id="modal-body" class="modal-box  w-11/12 max-w-5xl">
                 </div>
+            </div>
+        </section>
+        <!-- ─── Spiner ──────────────────────────────────── -->
+        <section>
+            <div class='flex items-center justify-center h-60'>
+                <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-red rounded-full animate-spin"></div>
             </div>
         </section>
     </main>
