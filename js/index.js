@@ -51,21 +51,31 @@ const fetchModalDetails = id => {
 }
 
 const showModalDetails = data => {
-    console.log(data.input_output_examples);
+    console.log(data.description);
     const modalBody = document.getElementById("modal-body");
     modalBody.innerHTML = `
-    <div class="p-5 md:p-[70px] grid md:grid-cols-2 gap-[20px]">
+    <div class="p-2 md:p-[70px] grid md:grid-cols-2 gap-[20px]">
         <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red hover:bg-red border-none">✕</label>
-        <div>
-            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
-                <h3>${data.description}</h3>
+        <div class="p-[20px]">
+            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark bg-lightred>           
+                <div class="">
+                    <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[25px] pt-[10px] md:pt-[25px]">${data.description}</h4>
+                    <div class="grid grid-cols-3  px-[10px] md:px-[25px]">
+                        <div class="px-[26] py-[22px] text-center">
+                            <p>${data.pricing[0].plan}</p>
+                            <p>${data.pricing[0].price}</p>
+                        </div>
+                        <div class="px-[26] py-[22px]"></div>
+                        <div class="px-[26] py-[22px]"></div>
+                    </div>
+                </div>
             </div>
             <div>
                 <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
-                    <div class="p-[20px] text-center">
-                        <img class="w-full rounded" src="${data.image_link[0]}" />
-                        <h4 class="mt-[25px] mb-4 font-work font-semibold text-[20px] md:text-[25px]">${data.input_output_examples[0].input}</h4>
-                        <h3 class="mt-[25px] mb-4 font-work font-semibold text-[12px] md:text-[16px] text-darker">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
+                    <div class="">
+                        <img class="w-full rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                        <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
+                        <h3 class="mb-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
                     </div>
                 </div>
             </div>
