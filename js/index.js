@@ -51,14 +51,14 @@ const fetchModalDetails = id => {
 }
 
 const showModalDetails = data => {
-    console.log(data.description);
+    console.log(data.integrations[0]);
     const modalBody = document.getElementById("modal-body");
     modalBody.innerHTML = `
-    <div class="p-2 md:p-[70px] grid md:grid-cols-2 gap-[20px]">
-        <label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red hover:bg-red border-none">✕</label>
+    <div class="grid md:grid-cols-2 gap-[20px]">
+        <label for="my-modal" class="btn btn-sm btn-circle absolute right-0 top-0 bg-red hover:bg-red border-none">✕</label>
         <div class="card w-full bg-base-400 shadow-xl border-[1px] border-red bg-lightred">           
             <div class="">
-                <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[25px] pt-[10px] md:pt-[25px]">${data.description}</h4>
+                <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[15px] pt-[10px] md:pt-[25px]">${data.description}</h4>
                 <div class="grid grid-cols-3  px-[10px] md:px-[25px] gap-4 items-center">
                     <div class="py-[22px] text-center bg-white rounded-lg my-[25px]">
                         <p class="text-green font-work font-bold text-xs md:text-base">${data.pricing[0].price ? data.pricing[0].price : 'Free of Cost/'}</p>
@@ -73,12 +73,22 @@ const showModalDetails = data => {
                         <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].plan}</p>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-5 px-[25px]">
+                <div class="grid md:grid-cols-5 px-[25px] pb-[20px] space-x-4">
                     <div class="col-span-3">
                         <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
+                        <ul class="list-disc pl-[25px]">
+                            <li class="font-work text-base">${data.features[1].feature_name ? data.features[1].feature_name : 'Not Found'}</li>
+                            <li class="font-work text-base">${data.features[2].feature_name ? data.features[2].feature_name : 'Not Found'}</li>
+                            <li class="font-work text-base">${data.features[3].feature_name ? data.features[3].feature_name : 'Not Found'}</li>
+                        </ul>
                     </div>
                     <div>
-                        <h3 class="card-title font-work font-semibold text-[25px] mb-4">Integrations</h3>
+                        <h3 class="card-title font-work font-semibold text-[25px] mb-4 ml-[-15px]">Integrations</h3>
+                        <ul class="list-disc">
+                            <li class="font-work text-base whitespace-nowrap">${data.integrations[0] ? data.integrations[0] : 'Not Found'}</li>
+                            <li class="font-work text-base whitespace-nowrap">${data.integrations[1] ? data.integrations[2] : 'Not Found'}</li>
+                            <li class="font-work text-base whitespace-nowrap">${data.integrations[3] ? data.integrations[3] : 'Not Found'}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -86,9 +96,9 @@ const showModalDetails = data => {
         <div>
             <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
                 <div class="">
-                    <img class="w-full rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                    <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
                     <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
-                    <h3 class="mb-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
+                    <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
                 </div>
             </div>
         </div>
