@@ -59,13 +59,27 @@ const showModalDetails = data => {
         <div class="card w-full bg-base-400 shadow-xl border-[1px] border-red bg-lightred">           
             <div class="">
                 <h4 class="font-work font-semibold text-[20px] md:text-[25px] px-[10px] md:px-[25px] pt-[10px] md:pt-[25px]">${data.description}</h4>
-                <div class="grid grid-cols-3  px-[10px] md:px-[25px]">
-                    <div class="px-[26] py-[22px] text-center">
-                        <p>${data.pricing[0].plan}</p>
-                        <p>${data.pricing[0].price}</p>
+                <div class="grid grid-cols-3  px-[10px] md:px-[25px] gap-4 items-center">
+                    <div class="py-[22px] text-center bg-white rounded-lg my-[25px]">
+                        <p class="text-green font-work font-bold text-xs md:text-base">${data.pricing[0].price ? data.pricing[0].price : 'Free of Cost/'}</p>
+                        <p class="text-green font-work font-bold text-xs md:text-base">${data.pricing[0].plan}</p>
                     </div>
-                    <div class="px-[26] py-[22px]"></div>
-                    <div class="px-[26] py-[22px]"></div>
+                    <div class="px-[26] py-[22px] text-center bg-white rounded-lg my-[25px]">
+                        <p class="text-yellow font-work font-bold text-xs md:text-base">${data.pricing[1].price ? data.pricing[1].price : 'Free of Cost/'}</p>
+                        <p class="text-yellow font-work font-bold text-xs md:text-base">${data.pricing[1].plan}</p>
+                    </div>
+                    <div class="px-[26] py-[22px] text-center bg-white rounded-lg my-[25px]">
+                        <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].price ? data.pricing[2].price.slice(0,11) : 'Free of Cost/'}</p>
+                        <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].plan}</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-5 px-[25px]">
+                    <div class="col-span-3">
+                        <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
+                    </div>
+                    <div>
+                        <h3 class="card-title font-work font-semibold text-[25px] mb-4">Integrations</h3>
+                    </div>
                 </div>
             </div>
         </div>
