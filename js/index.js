@@ -8,7 +8,7 @@ const fetchUniverseHub = () => {
 const showUniverseHub = (data) => {
     // console.log(data);
     const containerDetails = document.getElementById("card-container");
-    data.tools.slice(0, 6).forEach(card => {
+    data.tools.forEach(card => {
         containerDetails.innerHTML += `
         <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
             <div class="avatar">
@@ -51,7 +51,7 @@ const fetchModalDetails = id => {
 }
 
 const showModalDetails = data => {
-    console.log(data.integrations[0]);
+    console.log(data.accuracy.score);
     const modalBody = document.getElementById("modal-body");
     modalBody.innerHTML = `
     <div class="grid md:grid-cols-2 gap-[20px]">
@@ -96,9 +96,12 @@ const showModalDetails = data => {
         <div>
             <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
                 <div class="">
-                    <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                    <div class="relative">
+                        <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                        <button class="btn btn-small bg-red hover:bg-red border-0 text-base font-normal px-[10px] py-[5px] absolute md:top-[34px] md:left-[300px]"><span>${data.accuracy.score}</span>% accuracy</button>
+                    </div>
                     <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
-                    <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h3>
+                    <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output.slice(0, 120) : 'No! Not Yet! Take a break!!!'}</h3>
                 </div>
             </div>
         </div>
