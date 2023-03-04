@@ -1,56 +1,149 @@
-const fetchUniverseHub = () => {
+// ─── Fetch Cards Details ─────────────────────────────────────────────────
+const fetchUniverseHub = (dataLimit = 6) => {
     const url = "https://openapi.programming-hero.com/api/ai/tools";
     fetch(url)
-    .then(res => res.json())
-    .then(data => showUniverseHub(data.data))
+        .then(res => res.json())
+        .then(data => showUniverseHub(data.data, dataLimit))
 }
 
-const showUniverseHub = (data) => {
-    // console.log(data);
+// ─── Display Cards Details ─────────────────────────────────────────────────
+const showUniverseHub = (data, dataLimit) => {
     const containerDetails = document.getElementById("card-container");
-    data.tools.forEach(card => {
+    const cards = data.tools;
+    let numCardsDisplayed = 0;
+
+    // Determine the number of cards to show initially
+    const initialCardLimit = Math.min(dataLimit, cards.length);
+
+    // ─── Display the first 6 cards ─────────────────────────────────────────────────
+    for (let i = 0; i < 6; i++) {
+        const card = cards[i];
         containerDetails.innerHTML += `
-        <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>           
+          <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
             <div class="avatar">
-                <div class="">
-                    <img class="p-[25px] w-full rounded" src="${card.image}" />
+              <div class="">
+                <img class="p-[25px] w-full rounded" src="${card.image}" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
+                <p class="font-work text-darker">1. ${
+                  card.features[0] ? card.features[0] : "Not Found"
+                }</p>
+                <p class="font-work text-darker">2. ${
+                  card.features[1] ? card.features[1] : "Not Found"
+                }</p>
+                <p class="font-work text-darker">3. ${
+                  card.features[2] ? card.features[2] : "Not Found"
+                }</p>
+              </div>
+              <div class="px-[25px]">
+                <hr>
+              </div>
+              <div class="p-[25px] flex justify-between items-center">
+                <div>
+                  <h3 class="card-title font-work font-semibold text-[25px] mb-4">${
+                    card.name
+                  }</h3>
+                  <div class="flex  space-x-[8px]">
+                    <img class="" src="../images/published_in.png" />
+                    <p class="font-work text-darker">${
+                      card.published_in
+                    }</p>
+                  </div>
                 </div>
-                <div class="card-body">
-                    <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
-                    <p class="font-work text-darker">1. ${card.features[0] ? card.features[0] : 'Not Found'}</p>
-                    <p class="font-work text-darker">2. ${card.features[1] ? card.features[1] : 'Not Found'}</p>
-                    <p class="font-work text-darker">3. ${card.features[2] ? card.features[2] : 'Not Found'}</p>
+                <div>
+                  <label
+                    for="my-modal"
+                    class="btn bg-white hover:bg-white border-none"
+                  >
+                    <img
+                      src="../images/arrow-btn.png"
+                      onclick="fetchModalDetails('${card.id}')"
+                    />
+                  </label>
                 </div>
-                <div class="px-[25px]">
-                    <hr>
-                </div>
-                <div class="p-[25px] flex justify-between items-center">
-                    <div>
-                        <h3 class="card-title font-work font-semibold text-[25px] mb-4">${card.name}</h3>
-                        <div class="flex  space-x-[8px]">
-                            <img class="" src="../images/published_in.png" />
-                            <p class="font-work text-darker">${card.published_in}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="my-modal" class="btn bg-white hover:bg-white border-none"><img src="../images/arrow-btn.png"  onclick="fetchModalDetails('${card.id}')"></label>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
+          </div>
         `;
-        
-    });
-    
+        numCardsDisplayed++;
+    }
+
+    // Hide the "See More" button if there are not enough cards to show
+    if (cards.length <= initialCardLimit) {
+    document.getElementById("seeMore").style.display = "none";
+    document.getElementById("spiner").style.display = "none";
+    }
+
+    const showMore = document.getElementById("seeMore");
+    const showSpiner = document.getElementById("spiner");
+    showMore.addEventListener("click", () => {
+        // Show the next 6 cards
+        // const nextCardLimit = Math.min(numCardsDisplayed + 6, cards.length);
+        for (let i = 6; i < 12; i++) {
+        const card = cards[i];
+        containerDetails.innerHTML += `
+          <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
+            <div class="avatar">
+              <div class="">
+                <img class="p-[25px] w-full rounded" src="${card.image}" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
+                <p class="font-work text-darker">1. ${
+                  card.features[0] ? card.features[0] : "Not Found"
+                }</p>
+                <p class="font-work text-darker">2. ${
+                  card.features[1] ? card.features[1] : "Not Found"
+                }</p>
+                <p class="font-work text-darker">3. ${
+                  card.features[2] ? card.features[2] : "Not Found"
+                }</p>
+              </div>
+              <div class="px-[25px]">
+                <hr>
+              </div>
+              <div class="p-[25px] flex justify-between items-center">
+                <div>
+                  <h3 class="card-title font-work font-semibold text-[25px] mb-4">${
+                    card.name
+                  }</h3>
+                  <div class="flex  space-x-[8px]">
+                    <img class="" src="../images/published_in.png" />
+                    <p class="font-work text-darker">${
+                      card.published_in
+                    }</p>
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="my-modal"
+                    class="btn bg-white hover:bg-white border-none"
+                  >
+                    <img
+                      src="../images/arrow-btn.png"
+                      onclick="fetchModalDetails('${card.id}')"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        numCardsDisplayed++;
+        }
+    })
 }
 
+// ─── Fetch Modal Details ─────────────────────────────────────────────────
 const fetchModalDetails = id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     fetch(url)
-    .then(res => res.json())
-    .then(data => showModalDetails(data.data))
+        .then(res => res.json())
+        .then(data => showModalDetails(data.data))
 }
 
+// ─── Display Modal Details ─────────────────────────────────────────────────
 const showModalDetails = data => {
     console.log(data.accuracy.score);
     const modalBody = document.getElementById("modal-body");
@@ -70,7 +163,7 @@ const showModalDetails = data => {
                         <p class="text-yellow font-work font-bold text-xs md:text-base">${data.pricing[1].plan}</p>
                     </div>
                     <div class="px-[26] py-[22px] text-center bg-white rounded-lg my-[25px]">
-                        <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].price ? data.pricing[2].price.slice(0,11) : 'Free of Cost/'}</p>
+                        <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].price ? data.pricing[2].price.slice(0, 11) : 'Free of Cost/'}</p>
                         <p class="text-red font-work font-bold text-xs md:text-base">${data.pricing[2].plan}</p>
                     </div>
                 </div>
@@ -99,7 +192,7 @@ const showModalDetails = data => {
                 <div class="">
                     <div class="relative">
                         <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
-                        <button class="btn btn-small bg-red hover:bg-red border-0 text-base font-normal px-[10px] py-[5px] absolute md:top-[34px] md:left-[300px]"><span>${data.accuracy.score}</span>% accuracy</button>
+                        <button id="accuracyBtn" class="btn btn-small bg-red hover:bg-red border-0 text-base font-normal px-[10px] py-[2px] absolute md:top-[34px] md:left-[315px] lowercase"><span>${data.accuracy.score * 100}</span>% accuracy</button>
                     </div>
                     <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
                     <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output.slice(0, 120) : 'No! Not Yet! Take a break!!!'}</h3>
@@ -108,11 +201,29 @@ const showModalDetails = data => {
         </div>
     </div>
     `;
+    // ─── Accuracy Button Show or Hide ─────────────────────────────────────────────────
+    const accuracyBtn = document.getElementById("accuracyBtn");
+    if (!data.accuracy || !data.accuracy.score) {
+        accuracyBtn.style.display = "none";
+    } else {
+        accuracyBtn.style.display = "block";
+    }
 }
 
-// const seeMoreBtn = document.getElementById("seeMore");
-// seeMoreBtn.addEventListener("click", () => {
-//     showUniverseHub();
-// });
+const seeAll = () => {
+    // ─── Spiner Start ─────────────────────────────────────────────
+    toggleSpiner(true);
+    fetchUniverseHub();
+}
+
+const toggleSpiner = isLoading => {
+    const spinerSection = document.getElementById("spiner");
+    if (isLoading) {
+        spinerSection.classList.remove("hidden");
+    }
+    else {
+        spinerSection.classList.add("hidden");
+    }
+}
 
 fetchUniverseHub();
