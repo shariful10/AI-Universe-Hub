@@ -1,18 +1,19 @@
 let startIndex = 0;
-
-const fetchUniverseHub = (dataLimit) => {
+// ─── Fetch cards Details ─────────────────────────────────────────────────
+const fetchUniverseHub = () => {
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   fetch(url)
     .then(res => res.json())
-    .then(data => showUniverseHub(data.data, dataLimit))
+    .then(data => showUniverseHub(data.data))
 }
 
-const showUniverseHub = (data, dataLimit) => {
+// ─── Display cards Details ─────────────────────────────────────────────────
+const showUniverseHub = (data) => {
   const containerDetails = document.getElementById("card-container");
   const cards = data.tools;
-  // Display the first 6 cards
   for (let i = startIndex; i < startIndex + 6; i++) {
     const card = cards[i];
+    // ─── cards Details ─────────────────────────────────────────────────
     containerDetails.innerHTML += `
       <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
         <div class="avatar">
@@ -46,24 +47,9 @@ const showUniverseHub = (data, dataLimit) => {
       </div>
     `;
   }
-
-  // If there are more than 6 cards, display the "See All" button
-  // if (cards.length > 6) {
-  //   containerDetails.innerHTML += `
-  //     <button onclick="seeAll()" id="see-all-button" class="btn btn-primary mt-4">See All</button>
-  //   `;
-  // }
+  // ─── Stop Spiner ─────────────
+  toggleSpiner(false);
 }
-
-
-// const seeAll = () => {
-//   // Update startIndex to display the next 6 cards
-//   startIndex += 6;
-
-//   // Fetch the next 6 cards
-//   fetchUniverseHub(startIndex + 6);
-// }
-
 
 // ─── Fetch Modal Details ─────────────────────────────────────────────────
 const fetchModalDetails = id => {
@@ -77,6 +63,7 @@ const fetchModalDetails = id => {
 const showModalDetails = data => {
   console.log(data.accuracy.score);
   const modalBody = document.getElementById("modal-body");
+  // ─── Modal Details ─────────────────────────────────────────────────
   modalBody.innerHTML = `
     <div class="grid md:grid-cols-2 gap-[20px]">
         <label for="my-modal" class="btn btn-sm btn-circle absolute right-0 top-0 bg-red hover:bg-red border-none">✕</label>
@@ -140,14 +127,22 @@ const showModalDetails = data => {
   }
 }
 
+// ─── See All Button ─────────────────────────────────────────────────
 const seeAll = () => {
-  // Update startIndex to display the next 6 cards
+  // ─── Spiner Start ────────
+  toggleSpiner(true);
+
+  // ─── Update Startindex To Display The Next 6 Cards ─────────────
   startIndex += 6;
 
-  // Fetch the next 6 cards
+  // ─── Fetch The Next 6 Cards ────────────
   fetchUniverseHub(startIndex + 6);
+
+  const spinerDiv = document.getElementById("seeMore");
+  spinerDiv.classList.add ("hidden");
 }
 
+// ─── Spiner ────────────
 const toggleSpiner = isLoading => {
   const spinerSection = document.getElementById("spiner");
   if (isLoading) {
