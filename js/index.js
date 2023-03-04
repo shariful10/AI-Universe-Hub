@@ -1,153 +1,83 @@
-// ─── Fetch Cards Details ─────────────────────────────────────────────────
-const fetchUniverseHub = (dataLimit = 6) => {
-    const url = "https://openapi.programming-hero.com/api/ai/tools";
-    fetch(url)
-        .then(res => res.json())
-        .then(data => showUniverseHub(data.data, dataLimit))
+let startIndex = 0;
+
+const fetchUniverseHub = (dataLimit) => {
+  const url = "https://openapi.programming-hero.com/api/ai/tools";
+  fetch(url)
+    .then(res => res.json())
+    .then(data => showUniverseHub(data.data, dataLimit))
 }
 
-// ─── Display Cards Details ─────────────────────────────────────────────────
 const showUniverseHub = (data, dataLimit) => {
-    const containerDetails = document.getElementById("card-container");
-    const cards = data.tools;
-    let numCardsDisplayed = 0;
-
-    // Determine the number of cards to show initially
-    const initialCardLimit = Math.min(dataLimit, cards.length);
-
-    // ─── Display the first 6 cards ─────────────────────────────────────────────────
-    for (let i = 0; i < 6; i++) {
-        const card = cards[i];
-        containerDetails.innerHTML += `
-          <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
-            <div class="avatar">
-              <div class="">
-                <img class="p-[25px] w-full rounded" src="${card.image}" />
-              </div>
-              <div class="card-body">
-                <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
-                <p class="font-work text-darker">1. ${
-                  card.features[0] ? card.features[0] : "Not Found"
-                }</p>
-                <p class="font-work text-darker">2. ${
-                  card.features[1] ? card.features[1] : "Not Found"
-                }</p>
-                <p class="font-work text-darker">3. ${
-                  card.features[2] ? card.features[2] : "Not Found"
-                }</p>
-              </div>
-              <div class="px-[25px]">
-                <hr>
-              </div>
-              <div class="p-[25px] flex justify-between items-center">
-                <div>
-                  <h3 class="card-title font-work font-semibold text-[25px] mb-4">${
-                    card.name
-                  }</h3>
-                  <div class="flex  space-x-[8px]">
-                    <img class="" src="../images/published_in.png" />
-                    <p class="font-work text-darker">${
-                      card.published_in
-                    }</p>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    for="my-modal"
-                    class="btn bg-white hover:bg-white border-none"
-                  >
-                    <img
-                      src="../images/arrow-btn.png"
-                      onclick="fetchModalDetails('${card.id}')"
-                    />
-                  </label>
-                </div>
+  const containerDetails = document.getElementById("card-container");
+  const cards = data.tools;
+  // Display the first 6 cards
+  for (let i = startIndex; i < startIndex + 6; i++) {
+    const card = cards[i];
+    containerDetails.innerHTML += `
+      <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
+        <div class="avatar">
+          <div class="">
+            <img class="p-[25px] w-full rounded" src="${card.image}" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
+            <p class="font-work text-darker">1. ${card.features[0] ? card.features[0] : "Not Found"}</p>
+            <p class="font-work text-darker">2. ${card.features[1] ? card.features[1] : "Not Found"}</p>
+            <p class="font-work text-darker">3. ${card.features[2] ? card.features[2] : "Not Found"}</p>
+          </div>
+          <div class="px-[25px]">
+            <hr>
+          </div>
+          <div class="p-[25px] flex justify-between items-center">
+            <div>
+              <h3 class="card-title font-work font-semibold text-[25px] mb-4">${card.name}</h3>
+              <div class="flex  space-x-[8px]">
+                <img class="" src="../images/published_in.png" />
+                <p class="font-work text-darker">${card.published_in}</p>
               </div>
             </div>
-          </div>
-        `;
-        numCardsDisplayed++;
-    }
-
-    // Hide the "See More" button if there are not enough cards to show
-    if (cards.length <= initialCardLimit) {
-    document.getElementById("seeMore").style.display = "none";
-    document.getElementById("spiner").style.display = "none";
-    }
-
-    const showMore = document.getElementById("seeMore");
-    const showSpiner = document.getElementById("spiner");
-    showMore.addEventListener("click", () => {
-        // Show the next 6 cards
-        // const nextCardLimit = Math.min(numCardsDisplayed + 6, cards.length);
-        for (let i = 6; i < 12; i++) {
-        const card = cards[i];
-        containerDetails.innerHTML += `
-          <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark p-[25px]>
-            <div class="avatar">
-              <div class="">
-                <img class="p-[25px] w-full rounded" src="${card.image}" />
-              </div>
-              <div class="card-body">
-                <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
-                <p class="font-work text-darker">1. ${
-                  card.features[0] ? card.features[0] : "Not Found"
-                }</p>
-                <p class="font-work text-darker">2. ${
-                  card.features[1] ? card.features[1] : "Not Found"
-                }</p>
-                <p class="font-work text-darker">3. ${
-                  card.features[2] ? card.features[2] : "Not Found"
-                }</p>
-              </div>
-              <div class="px-[25px]">
-                <hr>
-              </div>
-              <div class="p-[25px] flex justify-between items-center">
-                <div>
-                  <h3 class="card-title font-work font-semibold text-[25px] mb-4">${
-                    card.name
-                  }</h3>
-                  <div class="flex  space-x-[8px]">
-                    <img class="" src="../images/published_in.png" />
-                    <p class="font-work text-darker">${
-                      card.published_in
-                    }</p>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    for="my-modal"
-                    class="btn bg-white hover:bg-white border-none"
-                  >
-                    <img
-                      src="../images/arrow-btn.png"
-                      onclick="fetchModalDetails('${card.id}')"
-                    />
-                  </label>
-                </div>
-              </div>
+            <div>
+              <label for="my-modal" class="btn bg-white hover:bg-white border-none">
+                <img src="../images/arrow-btn.png" onclick="fetchModalDetails('${card.id}')"/>
+              </label>
             </div>
           </div>
-        `;
-        numCardsDisplayed++;
-        }
-    })
+        </div>
+      </div>
+    `;
+  }
+
+  // If there are more than 6 cards, display the "See All" button
+  // if (cards.length > 6) {
+  //   containerDetails.innerHTML += `
+  //     <button onclick="seeAll()" id="see-all-button" class="btn btn-primary mt-4">See All</button>
+  //   `;
+  // }
 }
+
+
+// const seeAll = () => {
+//   // Update startIndex to display the next 6 cards
+//   startIndex += 6;
+
+//   // Fetch the next 6 cards
+//   fetchUniverseHub(startIndex + 6);
+// }
+
 
 // ─── Fetch Modal Details ─────────────────────────────────────────────────
 const fetchModalDetails = id => {
-    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => showModalDetails(data.data))
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => showModalDetails(data.data))
 }
 
 // ─── Display Modal Details ─────────────────────────────────────────────────
 const showModalDetails = data => {
-    console.log(data.accuracy.score);
-    const modalBody = document.getElementById("modal-body");
-    modalBody.innerHTML = `
+  console.log(data.accuracy.score);
+  const modalBody = document.getElementById("modal-body");
+  modalBody.innerHTML = `
     <div class="grid md:grid-cols-2 gap-[20px]">
         <label for="my-modal" class="btn btn-sm btn-circle absolute right-0 top-0 bg-red hover:bg-red border-none">✕</label>
         <div class="card w-full bg-base-400 shadow-xl border-[1px] border-red bg-lightred">           
@@ -200,30 +130,32 @@ const showModalDetails = data => {
             </div>
         </div>
     </div>
-    `;
-    // ─── Accuracy Button Show or Hide ─────────────────────────────────────────────────
-    const accuracyBtn = document.getElementById("accuracyBtn");
-    if (!data.accuracy || !data.accuracy.score) {
-        accuracyBtn.style.display = "none";
-    } else {
-        accuracyBtn.style.display = "block";
-    }
+  `;
+  // ─── Accuracy Button Show or Hide ─────────────────────────────────────────────────
+  const accuracyBtn = document.getElementById("accuracyBtn");
+  if (!data.accuracy || !data.accuracy.score) {
+    accuracyBtn.style.display = "none";
+  } else {
+    accuracyBtn.style.display = "block";
+  }
 }
 
 const seeAll = () => {
-    // ─── Spiner Start ─────────────────────────────────────────────
-    toggleSpiner(true);
-    fetchUniverseHub();
+  // Update startIndex to display the next 6 cards
+  startIndex += 6;
+
+  // Fetch the next 6 cards
+  fetchUniverseHub(startIndex + 6);
 }
 
 const toggleSpiner = isLoading => {
-    const spinerSection = document.getElementById("spiner");
-    if (isLoading) {
-        spinerSection.classList.remove("hidden");
-    }
-    else {
-        spinerSection.classList.add("hidden");
-    }
+  const spinerSection = document.getElementById("spiner");
+  if (isLoading) {
+    spinerSection.classList.remove("hidden");
+  }
+  else {
+    spinerSection.classList.add("hidden");
+  }
 }
 
-fetchUniverseHub();
+fetchUniverseHub(6);
