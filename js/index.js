@@ -88,31 +88,31 @@ const showModalDetails = data => {
                     <div class="col-span-3">
                         <h3 class="card-title font-work font-semibold text-[25px] mb-4">Features</h3>
                         <ul class="list-disc pl-[25px]">
-                            <li class="font-work text-base">${data.features[1].feature_name ? data.features[1].feature_name : 'Not Found'}</li>
-                            <li class="font-work text-base">${data.features[2].feature_name ? data.features[2].feature_name : 'Not Found'}</li>
-                            <li class="font-work text-base">${data.features[3].feature_name ? data.features[3].feature_name : 'Not Found'}</li>
+                          <li class="font-work text-base">${data.features[1].feature_name ? data.features[1].feature_name : 'Not Found'}</li>
+                          <li class="font-work text-base">${data.features[2].feature_name ? data.features[2].feature_name : 'Not Found'}</li>
+                          <li class="font-work text-base">${data.features[3].feature_name ? data.features[3].feature_name : 'Not Found'}</li>
                         </ul>
                     </div>
                     <div>
                         <h3 class="card-title font-work font-semibold text-[25px] mb-4 ml-[-15px]">Integrations</h3>
                         <ul class="list-disc">
-                            <li class="font-work text-base whitespace-nowrap">${data.integrations[0] ? data.integrations[0] : 'Not Found'}</li>
-                            <li class="font-work text-base whitespace-nowrap">${data.integrations[1] ? data.integrations[2] : 'Not Found'}</li>
-                            <li class="font-work text-base whitespace-nowrap">${data.integrations[3] ? data.integrations[3] : 'Not Found'}</li>
+                          <li class="font-work text-base whitespace-nowrap">${data.integrations[0] ? data.integrations[0] : 'Not Found'}</li>
+                          <li class="font-work text-base whitespace-nowrap">${data.integrations[1] ? data.integrations[2] : 'Not Found'}</li>
+                          <li class="font-work text-base whitespace-nowrap">${data.integrations[3] ? data.integrations[3] : 'Not Found'}</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div>
-            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark>           
+            <div class="card w-full bg-base-400 shadow-xl border-[1px] border-dark min-h-full">           
                 <div class="">
                     <div class="relative">
-                        <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
-                        <button id="accuracyBtn" class="btn btn-small bg-red hover:bg-red border-0 text-base font-normal px-[10px] py-[2px] absolute md:top-[34px] md:left-[315px] lowercase"><span>${data.accuracy.score * 100}</span>% accuracy</button>
+                      <img class="w-full h-[375px] rounded p-[10px] md:p-[25px]" src="${data.image_link[0]}" />
+                      <button id="accuracyBtn" class="btn btn-small bg-red hover:bg-red border-0 text-base font-normal px-[10px] py-[2px] absolute md:top-[34px] md:left-[315px] lowercase"><span>${data.accuracy.score * 100}</span>% accuracy</button>
                     </div>
                     <h4 class="font-work font-semibold text-[20px] md:text-[25px] md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].input}</h4>
-                    <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output.slice(0, 120) : 'No! Not Yet! Take a break!!!'}</h3>
+                    <h3 class="my-4 font-work font-semibold text-[14px] md:text-[16px] text-darker md:text-center px-[10px] md:px-[25px]">${data.input_output_examples[0].output ? data.input_output_examples[0].output.slice(0, 90) : 'No! Not Yet! Take a break!!!'}</h3>
                 </div>
             </div>
         </div>
